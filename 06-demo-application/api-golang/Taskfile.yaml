@@ -2,7 +2,8 @@ version: "3"
 
 vars:
   DATABASE_URL: "postgres://postgres:foobarbaz@localhost:5432/postgres"
-  IMAGE_REPO: sidpalas/devops-directive-docker-course-api-golang
+  REGISTRY_URL: macmini.home
+  IMAGE_REPO: /sidpalas/devops-directive-docker-course-api-golang
   IMAGE_TAG: foobarbaz
 
 tasks:
@@ -21,12 +22,14 @@ tasks:
   build-container-image:
     desc: Build container image
     cmds:
-      - |
-        KO_DOCKER_REPO='{{.IMAGE_REPO}}' \
-          ko build \
-          --bare \
-          --tags={{.IMAGE_TAG}} \
-          --platform=all
+      # - |
+      #   KO_DOCKER_REPO='{{.IMAGE_REPO}}' \
+      #     ko build \
+      #     --bare \
+      #     --tags={{.IMAGE_TAG}} \
+      #     --platform=all
+      - docker build -t {{.REGISTRY_URL}}{{.IMAGE_REPO}}:{{.IMAGE_TAG}} .
+      - docker push {{.REGISTRY_URL}}{{.IMAGE_REPO}}:{{.IMAGE_TAG}}
 
   build-container-image-multi-arch:
     desc: Build multi-arch container image

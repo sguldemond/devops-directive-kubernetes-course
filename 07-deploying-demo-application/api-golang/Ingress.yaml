@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-golang
+  namespace: demo-app
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: demo-app-strip-api-prefixes@kubernetescrd
+    # Alternative middleware annotation if the above doesn't work:
+    # traefik.ingress.kubernetes.io/router.middlewares: demo-app-strip-api-prefixes@traefik.containo.us
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: macmini.home
+      http:
+        paths:
+          - path: /api/golang
+            pathType: Prefix
+            backend:
+              service:
+                name: api-golang
+                port:
+                  number: 8000
