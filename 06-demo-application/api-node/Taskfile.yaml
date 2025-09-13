@@ -2,7 +2,7 @@ version: "3"
 
 vars:
   DATABASE_URL: "postgres://postgres:foobarbaz@localhost:5432/postgres"
-  REGISTRY_URL: macmini.home
+  REGISTRY_URL: registry.macmini.home
   IMAGE_REPO: /sidpalas/devops-directive-docker-course-api-node
   IMAGE_TAG: foobarbaz
 

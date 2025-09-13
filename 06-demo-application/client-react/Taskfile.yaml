@@ -1,7 +1,7 @@
 version: "3"
 
 vars:
-  REGISTRY_URL: macmini.home
+  REGISTRY_URL: registry.macmini.home
   IMAGE_REPO: /sidpalas/devops-directive-docker-course-client-react-nginx
   IMAGE_TAG: foobarbaz
 
