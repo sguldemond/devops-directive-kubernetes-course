@@ -8,6 +8,8 @@ spec:
   source:
     git:
       url: https://github.com/sguldemond/devops-directive-kubernetes-course.git
+      ref:
+        branch: changes
       path: 12-deploying-to-multiple-environments/kluctl
   target: staging
   context: default

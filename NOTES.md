@@ -63,10 +63,7 @@ conflict with "helm" using networking.k8s.io/v1. Not updating field '.metadata.l
 I should go back to chapter 12 and deploy using kluctl before the GitOps part of chapter 14.
 I order to complete `kluctl delete -t staging`, after initializing the delete I have to run:
 ```
-# Remove finalizers from the demo-app KluctlDeployment
 kubectl patch kluctldeployment demo-app -n kluctl-gitops -p '{"metadata":{"finalizers":[]}}' --type=merge
-
-# Remove finalizers from the gitops KluctlDeployment
 kubectl patch kluctldeployment gitops -n kluctl-gitops -p '{"metadata":{"finalizers":[]}}' --type=merge
 ```
 Then restart `kluctl delete -t staging`. 
@@ -117,3 +114,8 @@ This was not it! But the other way around, the `spec.ingressClassName` breaks it
 I applied a catch all Ingress that would route everything to the whoami service.
 Here is the documentation on the ingressclass annotation: https://doc.traefik.io/traefik/reference/install-configuration/providers/kubernetes/kubernetes-ingress/#providers-kubernetesIngress-ingressClass
 For now I've removed the mention of `spec.ingressClassName` in my custom Ingress manifests.
+---
+Back to GitOps function of kluctl in chapter 14.
+Deployment somehow works. It showing older deployments as well, which is confusing, not sure where does are coming from.
+The client can't seem to connect with the APIs though.
+I don't understand why it not taking the files from the `changes` branch like I configurred.
