@@ -91,6 +91,5 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           base: main
-          # Defaults to GITHUB_TOKEN, provided by secrets.env via `act --secret-file secrets.env`
-          # token: ${{ secrets.DEVOPS_DIRECTIVE_GITHUB_TOKEN }}
+          token: ${{ secrets.FINE_GRAINED_GITHUB_TOKEN }}
           title: "Update image tags to (${{ needs.generate-image-tag.outputs.image_tag }})"

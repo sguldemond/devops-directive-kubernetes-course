@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-node
+  namespace: demo-app
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: demo-app-strip-api-prefixes@kubernetescrd
+spec:
+  rules:
+    - host: {{ sharedVars.hostName }}
+      http:
+        paths:
+          - path: /api/node
+            pathType: Prefix
+            backend:
+              service:
+                name: api-node
+                port:
+                  number: 3000

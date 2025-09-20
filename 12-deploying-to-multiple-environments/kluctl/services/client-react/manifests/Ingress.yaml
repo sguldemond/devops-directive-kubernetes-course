@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: client-react-nginx
+  namespace: demo-app
+spec:
+  rules:
+    - host: {{ sharedVars.hostName }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: client-react-nginx
+                port:
+                  number: 8080

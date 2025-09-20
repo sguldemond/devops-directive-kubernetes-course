@@ -1,4 +1,4 @@
 deployments:
-  - path: traefik
+  # - path: traefik
   - path: cloudnative-pg
     waitReadiness: true
